@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Model.Blog>
+
+@if (Model.Any())
+{
+<ul>
+    @foreach (var m in Model)
+    {
+        <li>@m.BlogId - @m.Url</li>
+    }
+</ul>
+}
+else
+{
+    <p>There are no items.</p>
+}
