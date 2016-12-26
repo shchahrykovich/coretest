@@ -1,6 +1,11 @@
 #!/usr/bin/powershell
 
-& "$PSScriptRoot/Build.ps1"
+$outputFolder = "$PSScriptRoot/artifacts"
+$webDir = "$PSScriptRoot/WebApp"
 
-cd "$PSScriptRoot/src/WebApp"
-dotnet publish -o "$PSScriptRoot/artifacts" -c Release .
+Remove-Item -Force -Recurse $outputFolder
+
+dotnet publish -c Release -o $outputFolder "$webDir/WebApp.csproj"
+
+Copy-Item "$webDir/appsettings*.json" $outputFolder
+
